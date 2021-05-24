@@ -1,107 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>js calculator</title>
-    <style>
-        .c1 {
-            width: 20%;
-            border: 1px;
-            border-radius: 3px;
-            background-color: rgb(103, 176, 245);
-            margin: auto;
-            margin-top: 160px;
-            padding: 15px 6px 15px 6px;
-        }
+	<title>digital clock</title>
 
-        .c2 {
-            width: 80%;
-            border: 1px;
-            background-color: rgb(7, 194, 194);
-            margin: auto;
-            padding: 6px 4px 6px 4px;
-        }
+	<style type="text/css">
 
-        form {
-            text-align: center;
-            font-family: cursive;
+		body
+		{
+			background:lightseagreen;
+			background-size: cover;
+    }
+        p{
+          text-align: left;
+		  padding-bottom: 80px;
+          font-size: 80px;
+          font-family: sans-serif;
+          color:black;
+          text-decoration: underline;
         }
-
-        p,
-        #b1,
-        #b2,
-        #b3,
-        #b4 {
-            font-size: 22px;
+        h1{
+		  font-size: 40px;
+          text-align: left;
+          padding-top: 70px;
+          font-family: cursive;
         }
-
-        #b1,
-        #b2,
-        #b3,
-        #b4 {
-            border-radius: 4px;
-            background-color: rgb(159, 223, 235);
-            color: rgb(95, 93, 93)
-        }
-
-        input[type=text] {
-            border-radius: 3px;
-        }
-    </style>
-    <script>
-        function add()
-        {
-            var n1=parseInt(document.frm.t1.value);
-            var n2=parseInt(document.frm.t2.value);
-            var sum=n1+n2;
-            document.getElementById("sk").innerHTML=sum;
-        }
-        function sub()
-        {
-            var n1=parseInt(document.frm.t1.value);
-            var n2=parseInt(document.frm.t2.value);
-            var dif=n1-n2;
-            document.getElementById("sk").innerHTML=dif;
-        }
-        function mul()
-        {
-            var n1=parseInt(document.frm.t1.value);
-            var n2=parseInt(document.frm.t2.value);
-            var pro=n1*n2;
-            document.getElementById("sk").innerHTML=pro;
-        }
-        function div()
-        {
-            var n1=parseInt(document.frm.t1.value);
-            var n2=parseInt(document.frm.t2.value);
-            var div=n1/n2;
-            document.getElementById("sk").innerHTML=div;
-        }
-
-    </script>
+	</style>
 </head>
-
 <body>
-    <div class="c1">
-        <div class="c2">
-            <form name="frm">
-                <h1>JS Calculator</h1>
-                <p><input type="text" id="t1" placeholder="enter 1st number"></p>
-                <p><input type="text" id="t2" placeholder="enter 2nd number"></p>
-                <p>
-                    <input type="button" value="+" onclick="add()" id="b1">
-                    <input type="button" value="-" onclick="sub()" id="b2">
-                    <input type="button" value="*" onclick="mul()" id="b3">
-                    <input type="button" value="/" onclick="div()" id="b4">
+	<h1> DIGITAL CLOCK </h1>
 
-                </p>
-                <p id="sk"> </p>
-            </form>
-        </div>
-    </div>
+<p id="demo"> </p>
+<script>
+	function Clock()
+	{
+		var date= new Date();
+		var hr= date.getHours();
+		var min= date.getMinutes();
+		var sec= date.getSeconds();
+		var dur="AM"
+
+		if(hr==0)
+		{
+			hr=0;
+			dur="AM";
+		}
+
+		if(hr>12)
+		{
+			hr=hr-12;
+			dur="PM";
+		}
+
+		if(hr==12)
+		{
+			dur="PM";
+		}
+
+
+        hr=(hr<10)? "0"+hr : hr;
+        min=(min<10)? "0"+min :min;
+        sec=(sec<10)? "0"+sec :sec;
+
+
+	    var time=hr +":"+ min+":"+sec+" "+dur;
+        document.getElementById("demo").innerHTML=time;
+
+        setTimeout(Clock,1000);
+  	}
+
+	Clock();
+
+</script>
 </body>
-
 </html>
